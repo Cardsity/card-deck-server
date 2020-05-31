@@ -5,6 +5,7 @@ from .models import Deck, BlackCard, WhiteCard
 class BlackCardInline(admin.TabularInline):
     """Tabular inline for black cards."""
     model = BlackCard
+    readonly_fields = ('blanks',)
     fk_name = "deck"
 
 
