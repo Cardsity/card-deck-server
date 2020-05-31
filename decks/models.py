@@ -12,6 +12,7 @@ class Deck(models.Model):
     def as_dict(self):
         """Returns a deck as a dict."""
         base_dict = {
+            "id": self.pk,
             "name": self.name
         }
 
