@@ -8,6 +8,7 @@ BLACK_CARD_BLANK_REGEX = re.compile(r"(____+)+")
 class Deck(models.Model):
     """A deck."""
     name = models.CharField("Name", max_length=100)
+    official = models.BooleanField("Official", default=False)
 
     def as_dict(self):
         """Returns a deck as a dict."""
@@ -31,7 +32,7 @@ class Deck(models.Model):
 
     class Meta:
         # Order by desc primary key
-        ordering = ["-pk"]
+        ordering = ["-official", "-pk"]
 
 
 class BlackCard(models.Model):

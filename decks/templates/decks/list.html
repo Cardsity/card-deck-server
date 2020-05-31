@@ -20,7 +20,7 @@
                     {% for deck in object_list %}
                         <tr>
                             <td scope="row">{{ deck.pk }}</td>
-                            <td>{{ deck.name }}</td>
+                            <td>{{ deck.name }}{% if deck.official %} <span class="badge badge-info">Official</span>{% endif %}</td>
                             <td>{{ deck.blackcard_set.count }}</td>
                             <td>{{ deck.whitecard_set.count }}</td>
                             <td><a class="btn btn-link btn-sm" href="">View</a></td>

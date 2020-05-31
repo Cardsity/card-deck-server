@@ -18,5 +18,5 @@ class WhiteCardInline(admin.TabularInline):
 @admin.register(Deck)
 class DeckAdmin(admin.ModelAdmin):
     """The deck admin site."""
-    list_display = ('pk', 'name')
+    list_display = ('pk', 'name', 'official')
     inlines = (BlackCardInline, WhiteCardInline)
