@@ -23,7 +23,7 @@
                             <td>{{ deck.name }}{% if deck.official %} <span class="badge badge-info">Official</span>{% endif %}</td>
                             <td>{{ deck.blackcard_set.count }}</td>
                             <td>{{ deck.whitecard_set.count }}</td>
-                            <td><a class="btn btn-link btn-sm" href="">View</a></td>
+                            <td><a class="btn btn-link btn-sm" href="{% url 'decks:deck_detail' deck.pk %}">View</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

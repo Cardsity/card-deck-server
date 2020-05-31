@@ -1,0 +1,43 @@
+{% extends 'decks/base.html' %}
+{% load range %}
+{% load static %}
+
+{% block title %}Deck "{{ object.name }}"{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h1>Deck "{{ object.name }}"</h1>
+        </div>
+
+        <br>
+        <h3>Black cards</h3>
+        <div class="row">
+            {% for black_card in object.blackcard_set.all %}
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div class="card bg-dark text-white mb-3" style="height: 18em;">
+                        <div class="card-body">
+                            {{ black_card.text }}
+                            <img src="{% static 'decks/card-logo.png' %}" style="position: absolute; bottom: 3px; left: 3px; height: 20%; width: auto; filter: invert();">
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <br>
+        <h3>White cards</h3>
+        <div class="row">
+            {% for white_card in object.whitecard_set.all %}
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div class="card mb-3" style="height: 18em;">
+                        <div class="card-body">
+                            {{ white_card.text }}
+                            <img src="{% static 'decks/card-logo.png' %}" style="position: absolute; bottom: 3px; left: 3px; height: 20%; width: auto;">
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

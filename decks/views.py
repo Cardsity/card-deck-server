@@ -2,6 +2,7 @@ from django.views import View
 from django.http import HttpResponse, JsonResponse
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from .models import Deck
 
 
@@ -15,6 +16,12 @@ class DeckListView(ListView):
     model = Deck
     template_name = 'decks/list.html'
     paginate_by = 20
+
+
+class DeckDetailView(DetailView):
+    """Shows information about a specific deck."""
+    model = Deck
+    template_name = 'decks/deck_detail.html'
 
 
 class DeckJSONView(SingleObjectMixin, View):
