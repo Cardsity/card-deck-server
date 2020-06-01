@@ -15,15 +15,28 @@
         <br>
         <form method="post" id="deckform">
             {% csrf_token %}
-            {{ form.errors }}
             <input type="hidden" name="card_json" id="card_json" value="{{ form.card_json.value|default_if_none:"" }}" />
 
             <div class="row">
-                <div class="form-group col-12">
+                <div class="form-group col-12{% if form.name.errors %} has-danger{% endif %}">
                     <label for="name">Deck name</label>
-                    <input type="text" maxlength="100" class="form-control" id="name" name="name" placeholder="Deck name" value="{{ form.name.value|default_if_none:"" }}">
+                    <input type="text" maxlength="100" class="form-control{% if form.name.errors %} is-invalid{% endif %}" id="name" name="name" placeholder="Deck name" value="{{ form.name.value|default_if_none:"" }}">
+                    {% if form.name.errors %}
+                        {% for error in form.name.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
+
+            {% if form.card_json.errors %}
+                <div class="alert alert-dismissible alert-danger">
+                    <button class="close" data-dismiss="alert">&times;</button>
+                    {% for error in form.card_json.errors %}
+                        {{ error }} 
+                    {% endfor %}
+                </div>
+            {% endif %}
 
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -133,8 +146,6 @@
                 whiteCards.push(value);
             }
 
-            // TODO: Validation
-
             // Change the value of the hidden form field to the json version of all cards
             $('#card_json').val(JSON.stringify({
                 'black_cards': blackCards,
@@ -151,7 +162,6 @@
             let card_json_val = $('#card_json').val();
             // Check if it's empty or not
             if(card_json_val !== "") {
-                // TODO: Two fields get added for some reason, figure out why???
                 // Parse the json
                 let parsed_json_val = JSON.parse(card_json_val);
 
@@ -185,7 +195,7 @@
                 });
                 currentHighestWhiteCard = whiteCardCount;
                 // Add a new white card field so additional cards can be added
-                addBlackcard(whiteCardCount + 1);
+                addWhitecard(whiteCardCount + 1);
             } else {
                 // Add first fields to both categories
                 addBlackcard(1);
