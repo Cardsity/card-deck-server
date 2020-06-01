@@ -1,5 +1,6 @@
 from django.views import View
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
+from django.views.generic.base import TemplateView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -9,9 +10,9 @@ from .forms import DeckAddForm
 from django.shortcuts import redirect
 
 
-class IndexView(View):
-    def get(self, request):
-        return HttpResponse("Hello world!")
+class IndexView(TemplateView):
+    """Shows some information about the project."""
+    template_name = 'decks/index.html'
 
 
 class DeckAddView(FormView):

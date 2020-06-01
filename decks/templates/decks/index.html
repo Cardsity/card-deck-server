@@ -1,0 +1,30 @@
+{% extends 'decks/base.html' %}
+
+{% block title %}Cardsity decks{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="jumbotron">
+                    <h1 class="display-3">Cardsity decks</h1>
+                    <p class="lead">A utility to manage decks for Cardsity.</p>
+                    <hr class="my-4">
+                    <p>
+                        <b>What is Cardsity?</b><br>
+                        Cardsity is an <a href="https://github.com/Cardsity" target="_blank">open source</a> <a href="https://en.wikipedia.org/wiki/Cards_Against_Humanity" target="_blank">Cards Against Humanity</a> clone.
+                        It consists of three parts:
+                        <ul>
+                            <li>The <a href="https://github.com/Cardsity/Cardsity-Server" target="_blank">game server</a>, written in C++, maintained by <a href="https://github.com/Git-Curve" target="_blank">Curve</a>.</li>
+                            <li>The <a href="https://github.com/Cardsity/cah-vue-client" target="_blank">game client</a>, written in Vue, maintained by <a href="https://github.com/D3S0X" target="_blank">D3S0X</a>.</li>
+                            <li>The <a href="https://github.com/Cardsity/card-deck-server" target="_blank">deck server</a>, written using Django, maintained by <a href="https://github.com/ravi0lii" target="_blank">ravi0li</a>.</li>
+                        </ul>
+
+                        <b>What can you do here?</b><br>
+                        On this page, you can create new decks as well as viewing other decks. You can use the decks you found here in the game client.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
