@@ -33,7 +33,7 @@
                 <div class="alert alert-dismissible alert-danger">
                     <button class="close" data-dismiss="alert">&times;</button>
                     {% for error in form.card_json.errors %}
-                        {{ error }} 
+                        {{ error }}
                     {% endfor %}
                 </div>
             {% endif %}
@@ -58,6 +58,26 @@
                     </div>
                 </div>
             </div>
+
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border-info">
+                        <div class="card-header">
+                            Rules for cards
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>You need to have 5 black cards in the deck.</li>
+                                <li>You need to have 5 white cards in the deck.</li>
+                                <li>You are only allowed to have 100 cards in a deck.</li>
+                                <li>A card is only allowed to have a maximum of 64 characters.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <br>
             <div class="row">
