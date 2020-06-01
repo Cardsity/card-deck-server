@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="form-group col-12">
                     <label for="name">Deck name</label>
-                    <input type="text" maxlength="100" class="form-control" id="name" name="name" placeholder="Deck name">
+                    <input type="text" maxlength="100" class="form-control" id="name" name="name" placeholder="Deck name" value="{{ form.name.value|default_if_none:"" }}">
                 </div>
             </div>
 
@@ -57,18 +57,30 @@
 {% block js %}
     <script type="text/javascript">
         function getTextArea(id, value = "") {
+            /**
+             * Returns a string which contains a textarea-element with the supplied id and value.
+             */
             return "<div class='form-group'><textarea class='form-control' id='" + id + "' rows='2'>" + value + "</textarea></div>";
         }
 
 
+        /// The black cards that were already added
         let alreadyAddedBlackCards = []
+        // The number of the highest black card that currently exists
         let currentHighestBlackCard = 1;
 
         function addBlackcard(number) {
+            /**
+             * Adds a black card to the form.
+             */
+            // Append the html to the row
             $('#blackcards').append(getTextArea('blackcard' + number));
+
             $('#blackcard' + number).on('input', function(e) {
+                // Change the highest black card number if the current number is higher
                 if(currentHighestBlackCard < number) currentHighestBlackCard = number;
 
+                // Add a new black card textarea if this hasn't been done for this textarea already
                 if(!alreadyAddedBlackCards.includes(number)) {
                     addBlackcard(number + 1);
                     alreadyAddedBlackCards.push(number);
@@ -77,13 +89,23 @@
         }
 
 
+        /// The white cards that were already added
         let alreadyAddedWhiteCards = []
+        // The number of the highest white card that currently exists
         let currentHighestWhiteCard = 1;
+
         function addWhitecard(number) {
+            /**
+             * Adds a white card to the form.
+             */
+            // Append the html to the row
             $('#whitecards').append(getTextArea('whitecard' + number));
+
             $('#whitecard' + number).on('input', function(e) {
+                // Change the highest white card number if the current number is higher
                 if(currentHighestWhiteCard < number) currentHighestWhiteCard = number;
 
+                // Add a new white card textarea if this hasn't been done for this textarea already
                 if(!alreadyAddedWhiteCards.includes(number)) {
                     addWhitecard(number + 1);
                     alreadyAddedWhiteCards.push(number);
@@ -93,40 +115,79 @@
 
 
         $('#deckform').submit(function() {
-            black_cards = []
+            // Get content of all black cards if they are not empty
+            let blackCards = []
             for(let i = 1; i <= currentHighestBlackCard; i++) {
-                black_cards.push($('#blackcard' + i).val())
+                // Add value to blackCards if they are not an empty string
+                let value = $('#blackcard' + i).val().trim();
+                if(value === "") continue;
+                blackCards.push(value);
             }
 
-            white_cards = []
+            // Get content of all white cards if they are not empty
+            let whiteCards = []
             for(let i = 1; i <= currentHighestWhiteCard; i++) {
-                white_cards.push($('#whitecard' + i).val())
+                // Add value to whiteCards if they are not an empty string
+                let value = $('#whitecard' + i).val().trim();
+                if(value === "") continue;
+                whiteCards.push(value);
             }
 
             // TODO: Validation
 
+            // Change the value of the hidden form field to the json version of all cards
             $('#card_json').val(JSON.stringify({
-                'black_cards': black_cards,
-                'white_cards': white_cards
+                'black_cards': blackCards,
+                'white_cards': whiteCards
             }))
 
+            // Submit the form
             return true;
         });
 
 
         $(document).ready(function() {
+            // Get the value of the card_json field
             let card_json_val = $('#card_json').val();
+            // Check if it's empty or not
             if(card_json_val !== "") {
-                parsed_json_val = JSON.parse(card_json_val);
+                // TODO: Two fields get added for some reason, figure out why???
+                // Parse the json
+                let parsed_json_val = JSON.parse(card_json_val);
 
+                // Add the black card fields that were already filled
                 let blackCardCount = 0;
-                parsed_json_val["black_cards"].forEach(function(item, index, array) {
-                    if(item.trim() === "") return;
+                parsed_json_val["black_cards"].forEach(function(item) {
+                    // Trim item
+                    item = item.trim();
+                    // Check if the item is empty
+                    if(item === "") return;
+
+                    // Add new textarea with the content of the black card
                     blackCardCount++;
                     $('#blackcards').append(getTextArea('blackcard' + blackCardCount, item));
                 });
+                currentHighestBlackCard = blackCardCount;
+                // Add a new black card field so additional cards can be added
                 addBlackcard(blackCardCount + 1);
+
+                // Add the white card fields that were already filled
+                let whiteCardCount = 0;
+                parsed_json_val["white_cards"].forEach(function(item) {
+                    // Trim item
+                    item = item.trim();
+                    // Check if the item is empty
+                    if(item === "") return;
+
+                    // Add new textarea with the content of the white card
+                    whiteCardCount++;
+                    $('#whitecards').append(getTextArea('whitecard' + whiteCardCount, item));
+                });
+                currentHighestWhiteCard = whiteCardCount;
+                // Add a new white card field so additional cards can be added
+                addBlackcard(whiteCardCount + 1);
             } else {
+                // Add first fields to both categories
                 addBlackcard(1);
                 addWhitecard(1);
             }
