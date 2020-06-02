@@ -1,6 +1,7 @@
 from django.test import TestCase
 from decks.forms import DeckAddForm
 import json
+from decks.models import Deck, BlackCard, WhiteCard
 
 
 class DeckAddFormTestCase(TestCase):
@@ -195,3 +196,121 @@ class DeckAddFormTestCase(TestCase):
             "card_json": self.valid_card_json_min_amount
         })
         self.assertTrue(form.is_valid())
+
+
+class DeckModelTestCase(TestCase):
+    """Checks the models Deck, BlackCard and WhiteCard."""
+    def setUp(self) -> None:
+        # Create new decks
+        deck2 = Deck.objects.create(name='Second', official=True)
+
+        # Create new cards for deck2
+        self.card1_text = "a ____"
+        BlackCard.objects.create(deck=deck2, text=self.card1_text)
+        self.card2_text = "________ b _____________________"
+        BlackCard.objects.create(deck=deck2, text=self.card2_text)
+        self.card3_text = "c ___"
+        BlackCard.objects.create(deck=deck2, text=self.card3_text)
+        self.card4_text = "d"
+        BlackCard.objects.create(deck=deck2, text=self.card4_text)
+        self.card5_text = "e"
+        WhiteCard.objects.create(deck=deck2, text=self.card5_text)
+
+    def test_black_card_blanks(self):
+        """Checks if the blanks field of black cards is correct."""
+        # Get the deck
+        deck = Deck.objects.get(name='Second')
+
+        # Check card 1
+        card1 = BlackCard.objects.get(deck=deck, text=self.card1_text)
+        self.assertEqual(card1.blanks, 1, "The blank count for card 1 is not correct!")
+
+        # Check card 2
+        card2 = BlackCard.objects.get(deck=deck, text=self.card2_text)
+        self.assertEqual(card2.blanks, 2, "The blank count for card 2 is not correct!")
+
+        # Check card 3
+        card3 = BlackCard.objects.get(deck=deck, text=self.card3_text)
+        self.assertEqual(card3.blanks, 0, "The blank count for card 3 is not correct!")
+
+        # Check card 4
+        card4 = BlackCard.objects.get(deck=deck, text=self.card4_text)
+        self.assertEqual(card4.blanks, 0, "The blank count for card 4 is not correct!")
+
+    def test_card_as_dict(self):
+        """Tests if a card can be converted to a dict in the right way."""
+        # Get the deck
+        deck = Deck.objects.get(name='Second')
+
+        # Check card 1
+        card1 = BlackCard.objects.get(deck=deck, text=self.card1_text)
+        card1_dict = card1.as_dict()
+        self.assertDictEqual(card1_dict, {
+            "text": self.card1_text,
+            "blanks": 1
+        }, "as_dict() doesn't give the correct result for card 1 (black card)!")
+
+        # Check card 2
+        card2 = BlackCard.objects.get(deck=deck, text=self.card2_text)
+        card2_dict = card2.as_dict()
+        self.assertDictEqual(card2_dict, {
+            "text": self.card2_text,
+            "blanks": 2
+        }, "as_dict() doesn't give the correct result for card 2 (black card)!")
+
+        # Check card 3
+        card3 = BlackCard.objects.get(deck=deck, text=self.card3_text)
+        card3_dict = card3.as_dict()
+        self.assertDictEqual(card3_dict, {
+            "text": self.card3_text,
+            "blanks": 0
+        }, "as_dict() doesn't give the correct result for card 3 (black card)!")
+
+        # Check card 4
+        card4 = BlackCard.objects.get(deck=deck, text=self.card4_text)
+        card4_dict = card4.as_dict()
+        self.assertDictEqual(card4_dict, {
+            "text": self.card4_text,
+            "blanks": 0
+        }, "as_dict() doesn't give the correct result for card 4 (black card)!")
+
+        # Check card 5
+        card5 = WhiteCard.objects.get(deck=deck, text=self.card5_text)
+        card5_dict = card5.as_dict()
+        self.assertDictEqual(card5_dict, {
+            "text": self.card5_text
+        }, "as_dict() doesn't give the correct result for card 5 (white card)!")
+
+    def test_deck_as_dict(self):
+        """Tests if a deck can be converted to a dict in the right way."""
+        # Get the deck
+        deck = Deck.objects.get(name='Second')
+
+        # Check if the dict is equal
+        self.assertDictEqual(deck.as_dict(), {
+            "id": 1,
+            "name": "Second",
+            "black_cards": [
+                {
+                    "text": self.card1_text,
+                    "blanks": 1
+                },
+                {
+                    "text": self.card2_text,
+                    "blanks": 2
+                },
+                {
+                    "text": self.card3_text,
+                    "blanks": 0,
+                },
+                {
+                    "text": self.card4_text,
+                    "blanks": 0
+                }
+            ],
+            "white_cards": [
+                {
+                    "text": self.card5_text
+                }
+            ]
+        }, "as_dict() for the deck doesn't give the  result!")
