@@ -49,7 +49,10 @@ class BlackCard(models.Model):
         }
 
     def save(self, *args, **kwargs):
-        self.blanks = len(BLACK_CARD_BLANK_REGEX.findall(self.text))
+        # Set the found blanks
+        # When no blank was found, set it to 1
+        blanks_found = len(BLACK_CARD_BLANK_REGEX.findall(self.text))
+        self.blanks = blanks_found if blanks_found > 0 else 1
         super(BlackCard, self).save(*args, **kwargs)
 
 

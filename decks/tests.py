@@ -231,11 +231,11 @@ class DeckModelTestCase(TestCase):
 
         # Check card 3
         card3 = BlackCard.objects.get(deck=deck, text=self.card3_text)
-        self.assertEqual(card3.blanks, 0, "The blank count for card 3 is not correct!")
+        self.assertEqual(card3.blanks, 1, "The blank count for card 3 is not correct!")
 
         # Check card 4
         card4 = BlackCard.objects.get(deck=deck, text=self.card4_text)
-        self.assertEqual(card4.blanks, 0, "The blank count for card 4 is not correct!")
+        self.assertEqual(card4.blanks, 1, "The blank count for card 4 is not correct!")
 
     def test_card_as_dict(self):
         """Tests if a card can be converted to a dict in the right way."""
@@ -263,7 +263,7 @@ class DeckModelTestCase(TestCase):
         card3_dict = card3.as_dict()
         self.assertDictEqual(card3_dict, {
             "text": self.card3_text,
-            "blanks": 0
+            "blanks": 1
         }, "as_dict() doesn't give the correct result for card 3 (black card)!")
 
         # Check card 4
@@ -271,7 +271,7 @@ class DeckModelTestCase(TestCase):
         card4_dict = card4.as_dict()
         self.assertDictEqual(card4_dict, {
             "text": self.card4_text,
-            "blanks": 0
+            "blanks": 1
         }, "as_dict() doesn't give the correct result for card 4 (black card)!")
 
         # Check card 5
@@ -301,11 +301,11 @@ class DeckModelTestCase(TestCase):
                 },
                 {
                     "text": self.card3_text,
-                    "blanks": 0,
+                    "blanks": 1,
                 },
                 {
                     "text": self.card4_text,
-                    "blanks": 0
+                    "blanks": 1
                 }
             ],
             "white_cards": [
