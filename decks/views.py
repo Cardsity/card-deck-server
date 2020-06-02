@@ -45,6 +45,16 @@ class DeckListView(ListView):
     paginate_by = 20
 
 
+class DeckListJSONView(View):
+    """Returns all decks as json."""
+    def get(self, request):
+        # TODO: Add pagination
+        # Get all decks as a dict
+        decks_dict = Deck.get_all_decks_as_dict()
+        # Return the decks as a json
+        return JsonResponse(decks_dict)
+
+
 class DeckDetailView(DetailView):
     """Shows information about a specific deck."""
     model = Deck

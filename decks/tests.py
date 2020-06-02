@@ -202,6 +202,7 @@ class DeckModelTestCase(TestCase):
     """Checks the models Deck, BlackCard and WhiteCard."""
     def setUp(self) -> None:
         # Create new decks
+        Deck.objects.create(name='First', official=False)
         deck2 = Deck.objects.create(name='Second', official=True)
 
         # Create new cards for deck2
@@ -288,7 +289,7 @@ class DeckModelTestCase(TestCase):
 
         # Check if the dict is equal
         self.assertDictEqual(deck.as_dict(), {
-            "id": 1,
+            "id": 2,
             "name": "Second",
             "black_cards": [
                 {
@@ -313,4 +314,26 @@ class DeckModelTestCase(TestCase):
                     "text": self.card5_text
                 }
             ]
-        }, "as_dict() for the deck doesn't give the  result!")
+        }, "as_dict() for the deck doesn't give the result!")
+
+    def test_all_decks_as_dict(self):
+        """Tests the get_all_decks_as_dict() classmethod of the Deck model."""
+        # Get the dict containing all decks
+        decks_dict = Deck.get_all_decks_as_dict()
+
+        # Check if the dict is correct
+        # Note: The order is important because of the way the models get ordered defined in the Meta class of Deck
+        self.assertDictEqual(decks_dict, {
+            "decks": [
+                {
+                    "id": 2,
+                    "name": "Second",
+                    "official": True
+                },
+                {
+                    "id": 1,
+                    "name": "First",
+                    "official": False
+                }
+            ]
+        }, "get_all_decks_as_dict() doesn't give the right result!")

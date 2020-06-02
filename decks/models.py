@@ -30,6 +30,26 @@ class Deck(models.Model):
 
         return base_dict
 
+    @classmethod
+    def get_all_decks_as_dict(cls):
+        """Returns all decks as a dict."""
+        # Get all decks
+        decks = cls.objects.all()
+
+        # Create the dict
+        decks_dict = {
+            "decks": []
+        }
+        # Append all decks
+        for deck in decks:
+            decks_dict["decks"].append({
+                "id": deck.pk,
+                "name": deck.name,
+                "official": deck.official
+            })
+
+        return decks_dict
+
     class Meta:
         # Order by desc primary key
         ordering = ["-official", "-pk"]
