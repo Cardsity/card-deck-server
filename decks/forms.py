@@ -31,9 +31,9 @@ class DeckAddForm(forms.Form):
             value = parsed_json["black_cards"][i].strip()
             # Check if the trimmed value is not an empty string
             if value != "":
-                # Check if the length is longer than 64 chars (max length for a card)
-                if len(value) > 64:
-                    raise forms.ValidationError("There is a black card with more than 64 characters!")
+                # Check if the length is longer than 128 chars (max length for a card)
+                if len(value) > 128:
+                    raise forms.ValidationError("There is a black card with more than 128 characters!")
                 valid_entries.append(value)
         parsed_json["black_cards"] = valid_entries
         # Loop over white cards and "clean" them
@@ -42,9 +42,9 @@ class DeckAddForm(forms.Form):
             value = parsed_json["white_cards"][i].strip()
             # Check if the trimmed value is not an empty string
             if value != "":
-                # Check if the length is longer than 64 chars (max length for a card)
-                if len(value) > 64:
-                    raise forms.ValidationError("There is a white card with more than 64 characters!")
+                # Check if the length is longer than 128 chars (max length for a card)
+                if len(value) > 128:
+                    raise forms.ValidationError("There is a white card with more than 128 characters!")
                 valid_entries.append(value)
         parsed_json["white_cards"] = valid_entries
 

@@ -17,7 +17,7 @@ class DeckAddFormTestCase(TestCase):
         # Set some values for the test
         self.min_black_cards = 5
         self.min_white_cards = 5
-        self.max_card_length = 64
+        self.max_card_length = 128
         self.max_card_amount = 100
 
         # Make valid cards

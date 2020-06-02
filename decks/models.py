@@ -38,7 +38,7 @@ class Deck(models.Model):
 class BlackCard(models.Model):
     """A black card which belongs to a deck."""
     deck = models.ForeignKey(Deck, on_delete=models.CASCADE)
-    text = models.TextField("Text", max_length=64)
+    text = models.TextField("Text", max_length=128)
     blanks = models.PositiveIntegerField("Blank count")
 
     def as_dict(self):
@@ -59,7 +59,7 @@ class BlackCard(models.Model):
 class WhiteCard(models.Model):
     """A white card which belongs to a deck."""
     deck = models.ForeignKey(Deck, on_delete=models.CASCADE)
-    text = models.TextField("Text", max_length=64)
+    text = models.TextField("Text", max_length=128)
 
     def as_dict(self):
         """Returns a white card as a dict."""
