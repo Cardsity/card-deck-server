@@ -56,3 +56,7 @@ class News(models.Model):
     class Meta:
         # Order by date desc
         ordering = ['-created_at']
+
+        # Set verbose name
+        verbose_name = "news"
+        verbose_name_plural = "news"
