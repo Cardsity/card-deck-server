@@ -39,23 +39,25 @@ class NewsModelTestCase(TestCase):
 
     def test_get_all_news_as_dict(self):
         """Tests if the all_news_as_dict() method of the News model returns the correct result."""
-        # Get a list of all news
+        # Get a dict containing all news
         all_news = News.get_all_news_as_dict()
 
         # Check the returned list
-        self.assertListEqual(all_news, [
-            {
-                "id": 2,
-                "title": "Second",
-                "type": "SM",
-                "content": "Another hello '-'",
-                "created_at": self.second_time
-            },
-            {
-                "id": 1,
-                "title": "First",
-                "type": "UC",
-                "content": "Hello :)",
-                "created_at": self.first_time
-            }
-        ], "The list returned by get_all_news_as_dict() doesn't return the expected result!")
+        self.assertDictEqual(all_news, {
+            "news": [
+                {
+                    "id": 2,
+                    "title": "Second",
+                    "type": "SM",
+                    "content": "Another hello '-'",
+                    "created_at": self.second_time
+                },
+                {
+                    "id": 1,
+                    "title": "First",
+                    "type": "UC",
+                    "content": "Hello :)",
+                    "created_at": self.first_time
+                }
+            ]
+        }, "The list returned by get_all_news_as_dict() doesn't return the expected result!")

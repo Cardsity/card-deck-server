@@ -44,14 +44,16 @@ class News(models.Model):
 
     @classmethod
     def get_all_news_as_dict(cls):
-        """Returns all news as a list. Every news is a dict (see as_dict() method)."""
-        # Generate a list with all dicts of the news
-        news_list = []
+        """Returns all news as a dict. Every news is a dict (see as_dict() method)."""
+        # Generate a dict containing all news as a dict
+        news_dict = {
+            "news": []
+        }
         for n in News.objects.all():
-            news_list.append(n.as_dict())
+            news_dict["news"].append(n.as_dict())
 
-        # Return the list
-        return news_list
+        # Return the dict
+        return news_dict
 
     class Meta:
         # Order by date desc
