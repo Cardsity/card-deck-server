@@ -2,7 +2,7 @@
 The cardsity deck :flower_playing_cards: server.
 
 ## Installation
-The deck server can be started quite easy using docker. The docker image can be get from the GitHub packages of the Cardsity organization.  
+The deck server can be started quite easily using docker. The docker image can be get from the GitHub packages of the Cardsity organization.  
 To pull the latest image, type: `docker.pkg.github.com/cardsity/card-deck-server/cardsity-deck-server:latest`.
 **Note:** To pull this image, you need to [authenticate to GitHub packages](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages#authenticating-to-github-packages).  
 The image can then be run. It will expose the post `8020`.  
