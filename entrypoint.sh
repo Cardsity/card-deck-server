@@ -6,7 +6,7 @@ if [ -n "$DJANGO_AUTOMATIC_MIGRATE" ] ; then
 fi
 
 # Create superuser if parameters were supplied
-if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ] ; then
+if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_EMAIL" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ] ; then
     python manage.py createsuperuser --settings carddeckserver.settings.prod --no-input
 fi
 
