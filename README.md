@@ -1,4 +1,6 @@
 # card-deck-server
+[![Build Status](https://travis-ci.org/Cardsity/card-deck-server.svg?branch=master)](https://travis-ci.org/Cardsity/card-deck-server)
+[![Coverage Status](https://coveralls.io/repos/github/Cardsity/card-deck-server/badge.svg?branch=master)](https://coveralls.io/github/Cardsity/card-deck-server?branch=master)  
 The cardsity deck :flower_playing_cards: server.
 
 ## Installation
