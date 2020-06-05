@@ -2,7 +2,7 @@ FROM python:3.8.3-slim
 
 # Install needed packages
 RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get autoclean
-RUN apt-get install -y python3 python3-pip pipenv nginx vim mysql-client libmysqlclient-dev
+RUN apt-get install -y python3 python3-pip pipenv nginx vim mysql-client libmariadb-dev
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
