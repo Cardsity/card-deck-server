@@ -1,6 +1,8 @@
 # card-deck-server
 [![Build Status](https://travis-ci.org/Cardsity/card-deck-server.svg?branch=master)](https://travis-ci.org/Cardsity/card-deck-server)
 [![Coverage Status](https://coveralls.io/repos/github/Cardsity/card-deck-server/badge.svg?branch=master)](https://coveralls.io/github/Cardsity/card-deck-server?branch=master)
+[![Last Commit](https://img.shields.io/github/last-commit/Cardsity/card-deck-server)](https://github.com/Cardsity/card-deck-server/commits)
+[![GitHub release](https://img.shields.io/github/release/Cardsity/card-deck-server.svg)](https://GitHub.com/Cardsity/card-deck-server/releases/)
 [![GitHub license](https://img.shields.io/github/license/Cardsity/card-deck-server.svg)](https://github.com/Cardsity/card-deck-server/blob/master/LICENSE)  
 The cardsity deck :flower_playing_cards: server.
 
