@@ -21,10 +21,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'decks:deck_add' %}">Add</a>
+                        <a class="nav-link" href="{% url 'news:list' %}">News</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'decks:deck_list' %}">List</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navBarDropdownMenuDecks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Decks
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navBarDropdownMenuDecks">
+                            <a class="dropdown-item" href="{% url 'decks:deck_list' %}">List</a>
+                            <a class="dropdown-item" href="{% url 'decks:deck_add' %}">Add</a>
+                        </div>
                     </li>
                 </ul>
             </div>

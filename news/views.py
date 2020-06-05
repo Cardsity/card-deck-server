@@ -1,6 +1,14 @@
 from django.views.generic.base import View
+from django.views.generic.list import ListView
 from django.http import JsonResponse
 from .models import News
+
+
+class NewsListView(ListView):
+    """Renders all news."""
+    model = News
+    paginate_by = 5
+    template_name = "news/list.html"
 
 
 class NewsListJSONView(View):
