@@ -9,6 +9,7 @@ django-debug-toolbar = "*"
 [packages]
 django = "*"
 django-environ = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
