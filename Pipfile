@@ -10,6 +10,7 @@ django-debug-toolbar = "*"
 django = "*"
 django-environ = "*"
 gunicorn = "*"
+mysqlclient = "*"
 
 [requires]
 python_version = "3.8"
