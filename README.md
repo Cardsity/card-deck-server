@@ -1,6 +1,7 @@
 # card-deck-server
 [![Build Status](https://travis-ci.org/Cardsity/card-deck-server.svg?branch=master)](https://travis-ci.org/Cardsity/card-deck-server)
-[![Coverage Status](https://coveralls.io/repos/github/Cardsity/card-deck-server/badge.svg?branch=master)](https://coveralls.io/github/Cardsity/card-deck-server?branch=master)  
+[![Coverage Status](https://coveralls.io/repos/github/Cardsity/card-deck-server/badge.svg?branch=master)](https://coveralls.io/github/Cardsity/card-deck-server?branch=master)
+[![GitHub license](https://img.shields.io/github/license/Cardsity/card-deck-server.svg)](https://github.com/Cardsity/card-deck-server/blob/master/LICENSE)  
 The cardsity deck :flower_playing_cards: server.
 
 ## Installation
@@ -35,4 +36,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License
-[MIT](LICENSE)
+[GNU GPL v3.0](LICENSE)
