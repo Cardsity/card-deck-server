@@ -16,7 +16,7 @@ RUN apt-get autoremove && \
     pipenv lock --requirements > requirements.txt && \
     pip install -r requirements.txt && \
     apt purge -y --auto-remove $buildDeps && \
-    apt-get install -y libmysqlclient20 && \
+    apt-get install -y libmariadb3 && \
     chown -R www-data:www-data /app/ && \
     ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \
