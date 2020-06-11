@@ -11,7 +11,7 @@ WORKDIR /app/
 # Install everything that is needed
 RUN apt-get autoremove && \
     apt-get autoclean && \
-    buildDeps='gcc libmysqlclient-dev python3-dev' && \
+    buildDeps='gcc libmariadb-dev python3-dev' && \
     apt-get install -y --no-install-recommends $buildDeps && \
     pipenv lock --requirements > requirements.txt && \
     pip install -r requirements.txt && \
