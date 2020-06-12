@@ -13,7 +13,6 @@ fi
 # Collect static files
 if [ -n "$DJANGO_COLLECTSTATIC" ] ; then
     python manage.py collectstatic --settings carddeckserver.settings.prod --noinput
-    chown -R www-data:www-data /app/static/
 fi
 
 # Run the server

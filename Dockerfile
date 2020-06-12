@@ -1,23 +1,17 @@
-FROM python:3.8.3-slim
+FROM python:3.8.3-alpine
 
 # Copy everything to the container and install utility packages
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends pipenv vim && \
+RUN apk update && \
+    apk add --no-cache vim && \
     mkdir -p /app/static
 COPY . /app/
 WORKDIR /app/
 
 # Install everything that is needed
-RUN apt-get autoremove && \
-    apt-get autoclean && \
-    buildDeps='gcc libmariadb-dev python3-dev' && \
-    apt-get install -y --no-install-recommends $buildDeps && \
+RUN apk add --no-cache gcc mariadb-dev mariadb-client build-base python3-dev && \
+    pip install pipenv && \
     pipenv lock --requirements > requirements.txt && \
     pip install -r requirements.txt && \
-    apt purge -y --auto-remove $buildDeps && \
-    apt-get install -y libmariadb3 && \
-    chown -R www-data:www-data /app/ && \
-    rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache
 
 VOLUME ["/app/static"]
