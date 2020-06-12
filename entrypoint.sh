@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Automatic migrate
 if [ -n "$DJANGO_AUTOMATIC_MIGRATE" ] ; then
