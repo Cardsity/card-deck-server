@@ -17,5 +17,4 @@ if [ -n "$DJANGO_COLLECTSTATIC" ] ; then
 fi
 
 # Run the server
-gunicorn carddeckserver.wsgi --user www-data --bind 0.0.0.0:8010 --workers 3 &
-nginx -g "daemon off;"
+gunicorn carddeckserver.wsgi --user www-data --bind 0.0.0.0:8020 --workers 3
