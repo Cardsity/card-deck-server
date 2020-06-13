@@ -15,5 +15,10 @@ if [ -n "$DJANGO_COLLECTSTATIC" ] ; then
     python manage.py collectstatic --settings carddeckserver.settings.prod --noinput
 fi
 
+# Sleep if sleep parameter is supplied
+if [ -n "$SLEEP" ] ; then
+    sleep $SLEEP
+fi
+
 # Run the server
 gunicorn carddeckserver.wsgi --bind 0.0.0.0:8020 --workers 3

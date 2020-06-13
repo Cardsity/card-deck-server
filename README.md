@@ -17,6 +17,7 @@ The image can then be run. It will expose the post `8020`.
 - **DATABASE_URL**: The database url. For more information, see [the `db_url` type of django-environ](https://github.com/joke2k/django-environ#supported-types).
 - **DJANGO_AUTOMATIC_MIGRATE**: If this environment variable is set, django will automatically migrate the database on every start.
 - **DJANGO_COLLECTSTATIC**: If this environment variable is set, django will automatically collect the static files on every start.
+- **SLEEP**: If this parameter is supplied, the script will sleep for the supplied amount at the beginning.
 ### Creating a superuser
 To create a superuser, all of this three environment variables have to be supplied:
 - **DJANGO_SUPERUSER_USERNAME**: The username
