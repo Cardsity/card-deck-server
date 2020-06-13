@@ -3,7 +3,7 @@ FROM python:3.8.3-alpine
 # Copy everything to the container and install utility packages
 RUN apk update && \
     apk add --no-cache vim && \
-    mkdir -p /app/static
+    mkdir -p /app/static/static
 COPY . /app/
 WORKDIR /app/
 
