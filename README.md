@@ -8,13 +8,15 @@ The cardsity deck :flower_playing_cards: server.
 
 ## Installation
 The deck server can be started quite easily using docker. The docker image can be get from the GitHub packages of the Cardsity organization.  
-To pull the latest image, type: `docker.pkg.github.com/cardsity/card-deck-server/cardsity-deck-server:latest`.
+To pull the latest image, type: `docker pull docker.pkg.github.com/cardsity/card-deck-server/cardsity-deck-server:latest`.
 **Note:** To pull this image, you need to [authenticate to GitHub packages](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages#authenticating-to-github-packages).  
 The image can then be run. It will expose the post `8020`.  
 ### Environment variables
 - **SECRET_KEY**: The django secret key. Choose a long, randomly generated password for this.
 - **ALLOWED_HOSTS**: A list of allowed hosts separated by `,`, e.g.: `127.0.0.1,localhost`
 - **DATABASE_URL**: The database url. For more information, see [the `db_url` type of django-environ](https://github.com/joke2k/django-environ#supported-types).
+  You can also set the `MYSQL_USERNAME`, `MYSQL_PASSWORD`, `MYSQL_HOST` and `MYSQL_DATABASE` vars (this requires that no `DATABASE_URL` is supplied). 
+  If the `MYSQL_*` parameters are supplied, the container will automatically build the database url itself.
 - **DJANGO_AUTOMATIC_MIGRATE**: If this environment variable is set, django will automatically migrate the database on every start.
 - **DJANGO_COLLECTSTATIC**: If this environment variable is set, django will automatically collect the static files on every start.
 - **SLEEP**: If this parameter is supplied, the script will sleep for the supplied amount at the beginning.

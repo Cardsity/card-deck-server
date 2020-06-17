@@ -17,7 +17,12 @@ fi
 
 # Sleep if sleep parameter is supplied
 if [ -n "$SLEEP" ] ; then
-    sleep $SLEEP
+    sleep "$SLEEP"
+fi
+
+# Set the DATABASE_URL environment variable if all mysql parameters are set
+if [ -n "$MYSQL_USERNAME" ] && [ -n "$MYSQL_PASSWORD" ] && [ -n "$MYSQL_DATABASE" ] && [ -n "$MYSQL_HOST" ] && [ -z "$DATABASE_URL" ] ; then
+    export DATABASE_URL="mysql://${MYSQL_USERNAME}:${MYSQL_PASSWORD}@$MYSQL_HOST/${MYSQL_DATABASE}"
 fi
 
 # Run the server
