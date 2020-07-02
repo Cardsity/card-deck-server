@@ -10,7 +10,7 @@ The cardsity deck :flower_playing_cards: server.
 The deck server can be started quite easily using docker. The docker image can be get from the GitHub packages of the Cardsity organization.  
 To pull the latest image, type: `docker pull docker.pkg.github.com/cardsity/card-deck-server/cardsity-deck-server:latest`.
 **Note:** To pull this image, you need to [authenticate to GitHub packages](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages#authenticating-to-github-packages).  
-The image can then be run. It will expose the post `8020`.  
+The image can then be run. It will expose the port `8020`.  
 ### Environment variables
 - **SECRET_KEY**: The django secret key. Choose a long, randomly generated password for this.
 - **ALLOWED_HOSTS**: A list of allowed hosts separated by `,`, e.g.: `127.0.0.1,localhost`
