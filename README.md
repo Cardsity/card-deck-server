@@ -6,6 +6,9 @@
 [![GitHub license](https://img.shields.io/github/license/Cardsity/card-deck-server.svg)](https://github.com/Cardsity/card-deck-server/blob/master/LICENSE)  
 The cardsity deck :flower_playing_cards: server.
 
+# Unmaintained
+This reposity is unmaintained because of the new [management api](https://github.com/Cardsity/management-api). It completely replaces the card-deck-server and therefore makes it useless.
+
 ## Installation
 The deck server can be started quite easily using docker. The docker image can be get from the GitHub packages of the Cardsity organization.  
 To pull the latest image, type: `docker pull docker.pkg.github.com/cardsity/card-deck-server/cardsity-deck-server:latest`.
